@@ -1,203 +1,753 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Vivek singh Chahar | Web Developer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vivek Singh Chahar | MERN Developer</title>
+
     <style>
-        /* Reset & Base Styles */
+        :root {
+            --bg: #0a1020;
+            --card: #141f34;
+            --text: #f1f5ff;
+            --muted: #a7b7ce;
+            --accent: #5eead4;
+        }
+
+        /* Reset and Base Styles */
         * {
-            margin: 0;
-            padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            background-color: #f9f9f9;
-            color: #333;
-            padding: 20px;
+        html {
+            scroll-behavior: smooth;
         }
-        
-        
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font: 16px/1.65 'Segoe UI', Arial, sans-serif;
+        }
+
         a {
-            color: #007acc;
+            color: inherit;
             text-decoration: none;
         }
 
         a:hover {
-            text-decoration: underline;
+            color: var(--accent);
         }
 
-        /* Header */
+        .wrap {
+            width: min(1100px, 90%);
+            margin: auto;
+        }
+
+        /* Header and Navigation */
         header {
-            text-align: center;
-            padding: 30px 0;
-            background-color: #028ead;
-            color: white;
+            position: sticky;
+            top: 0;
+            background: #0a1020ee;
+            border-bottom: 1px solid #2b3b53;
+            z-index: 5;
         }
 
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-
-        header p {
-            font-size: 1.2em;
-        }
-
-        /* Navigation */
         nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .logo span,
+        .eyebrow {
+            color: var(--accent);
+        }
+
+        .links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .links a {
+            font-size: 14px;
+            color: var(--muted);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            align-items: center;
+            gap: 35px;
+        }
+
+        .badge {
+            display: inline-block;
+            border: 1px solid #2b6a61;
+            border-radius: 30px;
+            color: var(--accent);
+            padding: 5px 14px;
+            font-size: 13px;
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 6vw, 76px);
+            line-height: 1.12;
+            letter-spacing: -2px;
+            margin: 20px 0;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(
+                110deg,
+                #5eead4,
+                #b59aff
+            );
+            color: transparent;
+            background-clip: text;
+        }
+
+        .hero p,
+        .intro,
+        .card p {
+            color: var(--muted);
+        }
+
+        .hero p {
+            font-size: 18px;
+        }
+
+        /* Buttons */
+        .actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 28px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 22px;
+            border-radius: 9px;
+            font-weight: 700;
+            border: 1px solid #3a4b64;
+        }
+
+        .btn.primary {
+            background: var(--accent);
+            color: #08251f;
+            border-color: var(--accent);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Code Editor Card */
+        .codebox {
+            background: linear-gradient(
+                140deg,
+                #1b3850,
+                #141b34
+            );
+            border: 1px solid #3a5369;
+            border-radius: 22px;
+            padding: 25px;
+            box-shadow: 0 25px 80px #0005;
+        }
+
+        .window {
+            background: #0b1424;
+            border: 1px solid #354b66;
+            border-radius: 13px;
+            overflow: hidden;
+            transform: rotate(2deg);
+        }
+
+        .bar {
+            padding: 12px;
+            border-bottom: 1px solid #293b54;
+            color: #fa8398;
+        }
+
+        .code {
+            padding: 25px;
+            font: 14px/2 Consolas, monospace;
+            color: #b2a7ff;
+        }
+
+        .code em {
+            color: #5eead4;
+            font-style: normal;
+        }
+
+        .code b {
+            color: #f4a6cf;
+            font-weight: 400;
+        }
+
+        /* General Section Styles */
+        section.block {
+            padding: 65px 0;
+        }
+
+        .eyebrow {
+            font-size: 13px;
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: clamp(30px, 4vw, 42px);
+            letter-spacing: -1px;
+            margin: 8px 0 24px;
+        }
+
+        /* Grid Layouts */
+        .grid2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .grid3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--card);
+            border: 1px solid #2b3b53;
+            border-radius: 17px;
+            padding: 26px;
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        /* Technology Tags */
+        .tags {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap;
+        }
+
+        .tags span {
+            background: #21324d;
+            border: 1px solid #344964;
+            padding: 6px 11px;
+            border-radius: 7px;
+            font-size: 13px;
+        }
+
+        /* Projects */
+        .project {
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .art {
+            height: 155px;
+            background: radial-gradient(
+                circle at 70% 20%,
+                #3c7377,
+                transparent 45%
+            ), #192b43;
+            display: grid;
+            place-items: center;
+            font-size: 65px;
+        }
+
+        .project:nth-child(2) .art {
+            background: radial-gradient(
+                circle at 70% 20%,
+                #69578e,
+                transparent 45%
+            ), #192b43;
+        }
+
+        .project .inner {
+            padding: 25px;
+        }
+
+        .project a {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Contact Section */
+        .contact {
             text-align: center;
-            background-color: #e0e0e0;
-            padding: 15px 0;
-            margin-top: -1px;
+            padding: 55px 25px;
+            background: radial-gradient(
+                circle at top,
+                #1b4550,
+                transparent 65%
+            ), var(--card);
+            border: 1px solid #365664;
+            border-radius: 20px;
         }
 
-        nav a {
-            margin: 0 15px;
-            font-weight: bold;
+        .contact .actions {
+            justify-content: center;
         }
 
-        /* Sections */
-        section {
-            max-width: 800px;
-            margin: 40px auto;
-            background-color: white;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        section h2 {
-            color: #007acc;
-            margin-bottom: 15px;
-        }
-
-        article {
-            margin-bottom: 25px;
-        }
-
-        article h3 {
-            margin-bottom: 5px;
-            color: #444;
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        ul li {
-            margin-bottom: 10px;
+        .socials {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 25px;
+            flex-wrap: wrap;
         }
 
         /* Footer */
         footer {
+            border-top: 1px solid #2b3b53;
             text-align: center;
-            margin-top: 60px;
-            padding: 20px;
-            color: #777;
-            font-size: 0.9em;
+            color: var(--muted);
+            padding: 28px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 750px) {
+            nav {
+                padding: 16px 0;
+                flex-direction: column;
+            }
+
+            .links {
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 60px 0;
+            }
+
+            .grid2,
+            .grid3 {
+                grid-template-columns: 1fr;
+            }
+
+            .codebox {
+                max-width: 100%;
+            }
+
+            section.block {
+                padding: 45px 0;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <!-- Header -->
+    <!-- Header and Navigation -->
     <header>
-        <h1>Vivek singh Chahar</h1>
-        <p>Full Stack Web Developer</p>
+        <nav class="wrap">
+
+            <a href="#home" class="logo">
+                Vivek singh chahar<span>.</span>
+            </a>
+
+            <div class="links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+
+        </nav>
     </header>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <main>
 
-    <!-- About Section -->
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Aspiring Software Developer and final-year B.Tech Computer Science student at GLA University. Proficient in MERN Stack Development (MongoDB, Express.js, React, Node.js) and SQL. Strong foundation in data structures and full-stack architecture. Committed to leveraging technical skills to build scalable web applications in a professional environment.</p>
-    </section>
+        <!-- Hero Section -->
+        <div class="wrap hero" id="home">
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2>Featured Projects</h2>
+            <div>
+                <span class="badge">
+                    ● Open to opportunities
+                </span>
 
-        <article>
-            <h3>Portfolio Website</h3>
-            <p>A personal portfolio showcasing my design and development work.</p>
-            <p><strong>Tech Stack:</strong> HTML, CSS, JavaScript</p>
-        </article>
+                <h1>
+                    Hi, I'm
+                    <span>Vivek Singh Chahar.</span>
+                </h1>
 
-        <article>
-            <h3>Business Dashboard</h3>
-            <p>A web dashboard for managing sales, clients, and inventory.</p>
-            <p><strong>Tech Stack:</strong> React, Node.js, MongoDB</p>
-        </article>
+                <div class="eyebrow">
+                    Full Stack / MERN Developer
+                </div>
 
-        <article>
-            <h3>Open Source Contributions</h3>
-            <p>Contributor to various GitHub repositories focused on performance and accessibility.</p>
-        </article>
-    </section>
+                <p>
+                    I create responsive, functional web applications
+                    and enjoy turning ideas into real digital experiences.
+                    Final-year B.Tech CSE student at GLA University.
+                </p>
 
-    <!-- Services Section -->
-    <section id="services">
-        <h2>What I Offer</h2>
-        <ul>
-            <li>Custom Website Development</li>
-            <li>Performance Optimization</li>
-            <li>API Integration</li>
-            <li>Consulting and Code Review</li>
-        </ul>
-    </section>
+                <div class="actions">
+                    <a class="btn primary" href="#projects">
+                        Explore My Work ↗
+                    </a>
 
-    <!-- Contact Section -->
-   <!-- Contact Section -->
-<section id="contact">
-    <h2>Contact Me</h2>
+                    <a class="btn" href="#contact">
+                        Get in Touch →
+                    </a>
+                </div>
+            </div>
 
-    <p>
-        Email:
-        <a href="mailto:vivek.chahar_cs23@gla.ac.in">
-            vivek.chahar_cs23@gla.ac.in
-        </a>
-    </p>
+            <!-- Developer Code Card -->
+            <div class="codebox">
 
-    <p>
-        Phone:
-        <a href="tel:+919389944872">
-            +91 9389944872
-        </a>
-    </p>
+                <div class="window">
 
-    <p>
-        LinkedIn:
-        <a href="https://www.linkedin.com/in/vivek-chahar-b86707258"
-           target="_blank"
-           rel="noopener noreferrer">
-            Visit My LinkedIn Profile
-        </a>
-    </p>
+                    <div class="bar">
+                        ● ● ● &nbsp; developer.js
+                    </div>
 
-    <p>
-        GitHub:
-        <a href="https://github.com/vivekchahar1"
-           target="_blank"
-           rel="noopener noreferrer">
-            Visit My GitHub Profile
-        </a>
-    </p>
-</section>
+                    <div class="code">
+                        <em>const</em> developer = {
+                        <br>
+
+                        &nbsp; name:
+                        <b>"Vivek singh Chahar"</b>,
+                        <br>
+
+                        &nbsp; stack:
+                        <b>"MERN"</b>,
+                        <br>
+
+                        &nbsp; passion:
+                        <b>"Building things"</b>,
+                        <br>
+
+                        &nbsp; available:
+                        <em>true</em>
+                        <br>
+                        };
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- About Section -->
+        <section class="block" id="about">
+
+            <div class="wrap">
+
+                <div class="eyebrow">
+                    01 / Introduction
+                </div>
+
+                <h2>About Me</h2>
+
+                <div class="grid2">
+
+                    <div class="card">
+
+                        <h3>A little about me</h3>
+
+                        <p>
+                            I'm a final-year B.Tech Computer Science
+                            student at GLA University, Mathura.
+                            I'm focused on full-stack development
+                            and improving my problem-solving skills.
+                        </p>
+
+                        <p>
+                            I build with React, Node.js, Express.js,
+                            and MongoDB and enjoy learning how
+                            software works from frontend to backend.
+                        </p>
+
+                    </div>
+
+                    <!-- Skills Section -->
+                    <div class="card" id="skills">
+
+                        <h3>My Tech Stack</h3>
+
+                        <div class="tags">
+                            <span>JavaScript</span>
+                            <span>React.js</span>
+                            <span>Node.js</span>
+                            <span>Express.js</span>
+                            <span>MongoDB</span>
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>SQL</span>
+                            <span>REST APIs</span>
+                            <span>Git & GitHub</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Projects Section -->
+        <section class="block" id="projects">
+
+            <div class="wrap">
+
+                <div class="eyebrow">
+                    02 / Selected Work
+                </div>
+
+                <h2>Featured Projects</h2>
+
+                <div class="grid2">
+
+                    <!-- Portfolio Project -->
+                    <article class="card project">
+
+                        <div class="art">
+                            ⌘
+                        </div>
+
+                        <div class="inner">
+
+                            <h3>Personal Portfolio</h3>
+
+                            <p>
+                                A modern responsive website showcasing
+                                my skills, projects and contact information.
+                            </p>
+
+                            <div class="tags">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JavaScript</span>
+                            </div>
+
+                            <p>
+                                <a
+                                    href="https://vivekchahar1.github.io/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Live Website ↗
+                                </a>
+
+                                &nbsp;
+
+                                <a
+                                    href="https://github.com/vivekchahar1/vivekchahar1.github.io"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Source ↗
+                                </a>
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                    <!-- Business Dashboard Project -->
+                    <article class="card project">
+
+                        <div class="art">
+                            ▥
+                        </div>
+
+                        <div class="inner">
+
+                            <h3>Business Dashboard</h3>
+
+                            <p>
+                                A dashboard project for managing sales,
+                                clients, and inventory information.
+                            </p>
+
+                            <div class="tags">
+                                <span>React</span>
+                                <span>Node.js</span>
+                                <span>MongoDB</span>
+                            </div>
+
+                            <p>
+                                <a
+                                    href="https://github.com/vivekchahar1"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Explore GitHub ↗
+                                </a>
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Services Section -->
+        <section class="block" id="services">
+
+            <div class="wrap">
+
+                <div class="eyebrow">
+                    03 / What I Do
+                </div>
+
+                <h2>What I Can Build</h2>
+
+                <div class="grid3">
+
+                    <div class="card">
+
+                        <h3>◈ Frontend</h3>
+
+                        <p>
+                            Responsive websites and modern
+                            user interfaces.
+                        </p>
+
+                    </div>
+
+                    <div class="card">
+
+                        <h3>⚙ Backend</h3>
+
+                        <p>
+                            REST APIs, server-side logic
+                            and databases.
+                        </p>
+
+                    </div>
+
+                    <div class="card">
+
+                        <h3>↗ Full Stack</h3>
+
+                        <p>
+                            End-to-end applications using
+                            the MERN stack.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Contact Section -->
+        <section class="block" id="contact">
+
+            <div class="wrap">
+
+                <div class="contact">
+
+                    <div class="eyebrow">
+                        04 / Let's Connect
+                    </div>
+
+                    <h2>
+                        Let's build something together.
+                    </h2>
+
+                    <p>
+                        Open to fresher developer opportunities
+                        and collaborations.
+                    </p>
+
+                    <div class="actions">
+
+                        <a
+                            class="btn primary"
+                            href="mailto:vivek.chahar_cs23@gla.ac.in"
+                        >
+                            ✉ Email Me
+                        </a>
+
+                        <a
+                            class="btn"
+                            href="https://www.linkedin.com/in/vivek-chahar-b86707258"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            LinkedIn ↗
+                        </a>
+
+                    </div>
+
+                    <div class="socials">
+
+                        <a
+                            href="https://github.com/vivekchahar1"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            GitHub ↗
+                        </a>
+
+                        <a
+                            href="https://www.linkedin.com/in/vivek-chahar-b86707258"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            LinkedIn ↗
+                        </a>
+
+                        <a href="tel:+919389944872">
+                            Phone ↗
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Vivek Chahar. All rights reserved.</p>
+        © <span id="year"></span>
+        Vivek Singh Chahar · Built with care and code.
     </footer>
 
+    <!-- JavaScript -->
+    <script>
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+
 </body>
+
 </html>
+```
